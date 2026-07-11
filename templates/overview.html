@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Overview · Credit Card Approval Predictor{% endblock %}
+{% block content %}
+
+<h2 class="mb-3">💳 Credit Card Approval Prediction Dashboard</h2>
+<p class="text-muted">Exploring a synthetic credit card application dataset and comparing ML models trained to predict approval outcomes.</p>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3">
+    <div class="stat-card">
+      <div class="value">{{ stats.total }}</div>
+      <div class="label">Total Applications</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="stat-card">
+      <div class="value">{{ stats.approval_rate }}</div>
+      <div class="label">Approval Rate</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="stat-card">
+      <div class="value">{{ stats.avg_credit_score }}</div>
+      <div class="label">Avg. Credit Score</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="stat-card">
+      <div class="value">{{ stats.avg_income }}</div>
+      <div class="label">Avg. Annual Income</div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="chart-card"><div id="fig1"></div></div>
+  </div>
+  <div class="col-md-6">
+    <div class="chart-card"><div id="fig2"></div></div>
+  </div>
+  <div class="col-md-6">
+    <div class="chart-card"><div id="fig3"></div></div>
+  </div>
+  <div class="col-md-6">
+    <div class="chart-card"><div id="fig4"></div></div>
+  </div>
+</div>
+
+<div class="chart-card">
+  <h5>Dataset Sample</h5>
+  <div class="table-responsive">
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>{% for col in columns %}<th>{{ col }}</th>{% endfor %}</tr>
+      </thead>
+      <tbody>
+        {% for row in sample_table %}
+        <tr>{% for col in columns %}<td>{{ row[col] }}</td>{% endfor %}</tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  Plotly.newPlot('fig1', JSON.parse('{{ fig1 | safe }}').data, JSON.parse('{{ fig1 | safe }}').layout, {responsive: true});
+  Plotly.newPlot('fig2', JSON.parse('{{ fig2 | safe }}').data, JSON.parse('{{ fig2 | safe }}').layout, {responsive: true});
+  Plotly.newPlot('fig3', JSON.parse('{{ fig3 | safe }}').data, JSON.parse('{{ fig3 | safe }}').layout, {responsive: true});
+  Plotly.newPlot('fig4', JSON.parse('{{ fig4 | safe }}').data, JSON.parse('{{ fig4 | safe }}').layout, {responsive: true});
+</script>
+
+{% endblock %}

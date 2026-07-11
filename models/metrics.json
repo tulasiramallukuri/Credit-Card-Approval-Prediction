@@ -1,0 +1,163 @@
+{
+  "results": {
+    "Logistic Regression": {
+      "accuracy": 0.832,
+      "precision": 0.7861,
+      "recall": 0.7567,
+      "f1": 0.7711,
+      "roc_auc": 0.9141,
+      "confusion_matrix": [
+        [
+          549,
+          77
+        ],
+        [
+          91,
+          283
+        ]
+      ]
+    },
+    "Random Forest": {
+      "accuracy": 0.832,
+      "precision": 0.7977,
+      "recall": 0.738,
+      "f1": 0.7667,
+      "roc_auc": 0.9054,
+      "confusion_matrix": [
+        [
+          556,
+          70
+        ],
+        [
+          98,
+          276
+        ]
+      ]
+    },
+    "XGBoost": {
+      "accuracy": 0.827,
+      "precision": 0.7815,
+      "recall": 0.746,
+      "f1": 0.7633,
+      "roc_auc": 0.9059,
+      "confusion_matrix": [
+        [
+          548,
+          78
+        ],
+        [
+          95,
+          279
+        ]
+      ]
+    }
+  },
+  "feature_importance": [
+    {
+      "feature": "num__debt_to_income",
+      "importance": 0.2095
+    },
+    {
+      "feature": "num__annual_income",
+      "importance": 0.1962
+    },
+    {
+      "feature": "num__credit_score",
+      "importance": 0.1476
+    },
+    {
+      "feature": "num__years_employed",
+      "importance": 0.1098
+    },
+    {
+      "feature": "num__existing_debt",
+      "importance": 0.0801
+    },
+    {
+      "feature": "num__has_property",
+      "importance": 0.0641
+    },
+    {
+      "feature": "cat__employment_status_Unemployed",
+      "importance": 0.0602
+    },
+    {
+      "feature": "num__age",
+      "importance": 0.0289
+    },
+    {
+      "feature": "num__num_dependents",
+      "importance": 0.0158
+    },
+    {
+      "feature": "num__num_credit_cards",
+      "importance": 0.0148
+    },
+    {
+      "feature": "cat__employment_status_Employed",
+      "importance": 0.0142
+    },
+    {
+      "feature": "cat__education_High School",
+      "importance": 0.0077
+    },
+    {
+      "feature": "cat__employment_status_Self-Employed",
+      "importance": 0.0077
+    },
+    {
+      "feature": "cat__education_PhD",
+      "importance": 0.0064
+    },
+    {
+      "feature": "cat__education_Masters",
+      "importance": 0.0063
+    },
+    {
+      "feature": "cat__employment_status_Retired",
+      "importance": 0.0054
+    },
+    {
+      "feature": "cat__education_Bachelors",
+      "importance": 0.0049
+    },
+    {
+      "feature": "cat__marital_status_Divorced",
+      "importance": 0.0043
+    },
+    {
+      "feature": "cat__marital_status_Single",
+      "importance": 0.0042
+    },
+    {
+      "feature": "cat__gender_Female",
+      "importance": 0.0041
+    },
+    {
+      "feature": "cat__marital_status_Married",
+      "importance": 0.0041
+    },
+    {
+      "feature": "cat__gender_Male",
+      "importance": 0.0037
+    }
+  ],
+  "numeric_features": [
+    "age",
+    "years_employed",
+    "annual_income",
+    "credit_score",
+    "existing_debt",
+    "debt_to_income",
+    "num_credit_cards",
+    "num_dependents",
+    "has_property"
+  ],
+  "categorical_features": [
+    "gender",
+    "education",
+    "marital_status",
+    "employment_status"
+  ],
+  "best_model": "Logistic Regression"
+}

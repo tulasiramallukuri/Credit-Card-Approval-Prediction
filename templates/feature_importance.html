@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Feature Importance{% endblock %}
+{% block content %}
+
+<h2 class="mb-3">🔍 Feature Importance (Random Forest)</h2>
+
+<div class="chart-card"><div id="fi_fig"></div></div>
+
+<div class="alert alert-info">
+  Importance values come from the Random Forest model and reflect how much each feature
+  (after encoding) reduces prediction uncertainty. Encoded categorical features appear as
+  <code>cat__&lt;column&gt;_&lt;category&gt;</code>.
+</div>
+
+<script>
+  Plotly.newPlot('fi_fig', JSON.parse('{{ fig | safe }}').data, JSON.parse('{{ fig | safe }}').layout, {responsive: true});
+</script>
+
+{% endblock %}

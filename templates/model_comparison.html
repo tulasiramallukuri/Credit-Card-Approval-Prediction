@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Model Comparison{% endblock %}
+{% block content %}
+
+<h2 class="mb-3">📊 Model Comparison</h2>
+<p>Best model by ROC-AUC: 🏆 <strong>{{ best_model }}</strong></p>
+
+<div class="chart-card">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>ROC-AUC</th></tr>
+      </thead>
+      <tbody>
+        {% for row in metrics_table %}
+        <tr>
+          <td>{{ row.Model }}</td>
+          <td>{{ row.accuracy }}</td>
+          <td>{{ row.precision }}</td>
+          <td>{{ row.recall }}</td>
+          <td>{{ row.f1 }}</td>
+          <td>{{ row.roc_auc }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="chart-card"><div id="bar_fig"></div></div>
+
+<h5 class="mt-4">Confusion Matrices</h5>
+<div class="row">
+  {% for name, fig in cm_figs.items() %}
+  <div class="col-md-4">
+    <div class="chart-card"><div id="cm_{{ loop.index }}"></div></div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+  Plotly.newPlot('bar_fig', JSON.parse('{{ bar_fig | safe }}').data, JSON.parse('{{ bar_fig | safe }}').layout, {responsive: true});
+  {% for name, fig in cm_figs.items() %}
+  Plotly.newPlot('cm_{{ loop.index }}', JSON.parse('{{ fig | safe }}').data, JSON.parse('{{ fig | safe }}').layout, {responsive: true});
+  {% endfor %}
+</script>
+
+{% endblock %}

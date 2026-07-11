@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% block title %}Live Prediction{% endblock %}
+{% block content %}
+
+<h2 class="mb-3">🎯 Live Approval Prediction</h2>
+<p class="text-muted">Fill in applicant details to get a real-time prediction.</p>
+
+<div class="chart-card">
+  <form id="predict-form">
+    <div class="mb-3">
+      <label class="form-label">Model</label>
+      <select class="form-select" name="model" id="model">
+        {% for m in models %}
+        <option value="{{ m }}">{{ m }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label class="form-label">Age</label>
+          <input type="number" class="form-control" name="age" id="age" value="35" min="18" max="80" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Gender</label>
+          <select class="form-select" name="gender" id="gender">
+            {% for opt in category_options.gender %}<option>{{ opt }}</option>{% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Education</label>
+          <select class="form-select" name="education" id="education">
+            {% for opt in category_options.education %}<option>{{ opt }}</option>{% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Marital Status</label>
+          <select class="form-select" name="marital_status" id="marital_status">
+            {% for opt in category_options.marital_status %}<option>{{ opt }}</option>{% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label class="form-label">Employment Status</label>
+          <select class="form-select" name="employment_status" id="employment_status">
+            {% for opt in category_options.employment_status %}<option>{{ opt }}</option>{% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Years Employed</label>
+          <input type="number" class="form-control" name="years_employed" id="years_employed" value="5" min="0" max="40" step="0.5" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Annual Income ($)</label>
+          <input type="number" class="form-control" name="annual_income" id="annual_income" value="50000" min="0" step="1000" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Credit Score</label>
+          <input type="number" class="form-control" name="credit_score" id="credit_score" value="650" min="300" max="850" required>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label class="form-label">Existing Debt ($)</label>
+          <input type="number" class="form-control" name="existing_debt" id="existing_debt" value="5000" min="0" step="500" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Number of Existing Credit Cards</label>
+          <input type="number" class="form-control" name="num_credit_cards" id="num_credit_cards" value="2" min="0" max="10" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Number of Dependents</label>
+          <input type="number" class="form-control" name="num_dependents" id="num_dependents" value="0" min="0" max="6" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Owns Property?</label>
+          <select class="form-select" name="has_property" id="has_property">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">Predict Approval</button>
+  </form>
+</div>
+
+<div id="result-area" class="row mt-4" style="display:none;">
+  <div class="col-md-6">
+    <div id="result-box"></div>
+  </div>
+  <div class="col-md-6">
+    <div class="chart-card"><div id="gauge_fig"></div></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('predict-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const payload = {
+    model: document.getElementById('model').value,
+    age: document.getElementById('age').value,
+    gender: document.getElementById('gender').value,
+    education: document.getElementById('education').value,
+    marital_status: document.getElementById('marital_status').value,
+    employment_status: document.getElementById('employment_status').value,
+    years_employed: document.getElementById('years_employed').value,
+    annual_income: document.getElementById('annual_income').value,
+    credit_score: document.getElementById('credit_score').value,
+    existing_debt: document.getElementById('existing_debt').value,
+    num_credit_cards: document.getElementById('num_credit_cards').value,
+    num_dependents: document.getElementById('num_dependents').value,
+    has_property: document.getElementById('has_property').value,
+  };
+
+  const resp = await fetch('/api/predict', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload)
+  });
+  const data = await resp.json();
+
+  const resultArea = document.getElementById('result-area');
+  const resultBox = document.getElementById('result-box');
+  resultArea.style.display = 'flex';
+
+  if (data.approved) {
+    resultBox.innerHTML = `
+      <div class="result-approved">
+        <h4>✅ Approved</h4>
+        <p><strong>Confidence: ${data.probability}%</strong></p>
+        <p>Model used: ${data.model_used}</p>
+        <p>Debt-to-income ratio: ${data.debt_to_income}</p>
+      </div>`;
+  } else {
+    resultBox.innerHTML = `
+      <div class="result-denied">
+        <h4>❌ Denied</h4>
+        <p><strong>Confidence: ${(100 - data.probability).toFixed(1)}%</strong></p>
+        <p>Model used: ${data.model_used}</p>
+        <p>Debt-to-income ratio: ${data.debt_to_income}</p>
+      </div>`;
+  }
+
+  const gauge = {
+    type: "indicator",
+    mode: "gauge+number",
+    value: data.probability,
+    title: {text: "Approval Probability (%)"},
+    gauge: {
+      axis: {range: [0, 100]},
+      bar: {color: data.approved ? "#2ca02c" : "#d62728"},
+      steps: [
+        {range: [0, 40], color: "#fde0dd"},
+        {range: [40, 60], color: "#fee8c8"},
+        {range: [60, 100], color: "#e5f5e0"}
+      ]
+    }
+  };
+  Plotly.newPlot('gauge_fig', [gauge], {height: 300, margin: {t:40, b:10}}, {responsive: true});
+});
+</script>
+
+{% endblock %}
