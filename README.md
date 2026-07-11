@@ -5,8 +5,6 @@ application would be **approved** or **denied**, with an interactive
 Streamlit dashboard for exploring the data, comparing models, and getting
 live predictions.
 
-> All data used is **synthetically generated** — no real applicant data is
-> involved anywhere in this project.
 
 ## Project Structure
 
