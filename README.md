@@ -1,3 +1,5 @@
+You can access the deplyoed model form here https://credit-card-approval-prediction-vert.vercel.app/predict
+
 # Credit Card Approval Prediction
 
 A complete machine learning project that predicts whether a credit card
