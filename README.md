@@ -17,6 +17,10 @@ Three different models — Logistic Regression, Random Forest, and XGBoost — w
 | Allukuri Tulasiram | Team Lead | allikuritulasiram@gmail.com |
 | Kamarajugadda Badrinath Sai | Team Member | badrikamarajugadda6@gmail.com |
 | Bandaru Madhavi | Team Member | madhavibandaru0207@gmail.com |
+
+
+
+
 You can access the deplyoed model form here https://credit-card-approval-prediction-vert.vercel.app/predict
 
 
