@@ -1,11 +1,23 @@
-You can access the deplyoed model form here https://credit-card-approval-prediction-vert.vercel.app/predict
-
 # Credit Card Approval Prediction
 
-A complete machine learning project that predicts whether a credit card
-application would be **approved** or **denied**, with an interactive
-Streamlit dashboard for exploring the data, comparing models, and getting
-live predictions.
+## Introduction
+
+Credit Card Approval Prediction is a machine learning based web application that automates the process of predicting whether a credit card application should be approved or denied. Instead of manually reviewing an applicant's income, credit score, employment status, and existing debt, this system analyzes that data and returns an instant prediction along with a confidence score.
+
+Three different models — Logistic Regression, Random Forest, and XGBoost — were trained and compared to find the best-performing approach. The final model is integrated into a Flask web application with an interactive dashboard, letting users explore the dataset, compare model performance, view feature importance, and test live predictions in real time.
+
+**Live Demo:** https://credit-card-approval-prediction-vert.vercel.app/predict
+
+## Team
+
+**Team ID:** SWTID-2026-4073
+
+| Name | Role | Email |
+|---|---|---|
+| Allukuri Tulasiram | Team Lead | allikuritulasiram@gmail.com |
+| Kamarajugadda Badrinath Sai | Team Member | badrikamarajugadda6@gmail.com |
+| Bandaru Madhavi | Team Member | madhavibandaru0207@gmail.com |
+You can access the deplyoed model form here https://credit-card-approval-prediction-vert.vercel.app/predict
 
 
 ## Project Structure
