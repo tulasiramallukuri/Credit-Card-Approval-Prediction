@@ -7,7 +7,9 @@ Credit Card Approval Prediction is a machine learning based web application that
 Three different models — Logistic Regression, Random Forest, and XGBoost — were trained and compared to find the best-performing approach. The final model is integrated into a Flask web application with an interactive dashboard, letting users explore the dataset, compare model performance, view feature importance, and test live predictions in real time.
 
 **Live Model:** https://credit-card-approval-prediction-vert.vercel.app/predict
-**Live Demo:** https://drive.google.com/file/d/1iKI7wj2qTzx17s7U3Y4TQQnbSoyRl2cz/view?usp=sharing
+
+
+Live Demo: https://drive.google.com/file/d/1iKI7wj2qTzx17s7U3Y4TQQnbSoyRl2cz/view?usp=sharing
 
 ## Team
 
