@@ -12,11 +12,11 @@ Three different models — Logistic Regression, Random Forest, and XGBoost — w
 
 **Team ID:** SWTID-2026-4073
 
-| Name | Role | Email |
-|---|---|---|
-| Allukuri Tulasiram | Team Lead | allikuritulasiram@gmail.com |
-| Kamarajugadda Badrinath Sai | Team Member | badrikamarajugadda6@gmail.com |
-| Bandaru Madhavi | Team Member | madhavibandaru0207@gmail.com |
+| Name | Role | Email | Roll number |
+|---|---|---|---|
+| Allukuri Tulasiram | Team Lead | allikuritulasiram@gmail.com | 23FE1A0203 |
+| Kamarajugadda Badrinath Sai | Team Member | badrikamarajugadda6@gmail.com | 23FE1A0234 |
+| Bandaru Madhavi | Team Member | madhavibandaru0207@gmail.com | 23FE1A0207 |
 
 
 
