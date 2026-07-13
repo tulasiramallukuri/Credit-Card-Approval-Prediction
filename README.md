@@ -9,7 +9,7 @@ Three different models — Logistic Regression, Random Forest, and XGBoost — w
 **Live Model:** https://credit-card-approval-prediction-vert.vercel.app/predict
 
 
-Live Demo: https://drive.google.com/file/d/1iKI7wj2qTzx17s7U3Y4TQQnbSoyRl2cz/view?usp=sharing
+Demo Link: https://drive.google.com/file/d/1iKI7wj2qTzx17s7U3Y4TQQnbSoyRl2cz/view?usp=sharing
 
 ## Team
 
